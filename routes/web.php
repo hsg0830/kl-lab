@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GetListsController@ListForTop');
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -27,3 +25,23 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //コラムの投稿・編集など（Admin Gate テスト用）
 Route::resource('articles', 'ArticlesController');
 
+//コラムへの質問
+Route::resource('questions', 'QuestionsController');
+
+//コラムへの質問への回答
+Route::resource('answers', 'AnswersController');
+
+//資料室のルーティング
+Route::resource('resources', 'ResourcesController');
+
+//ファイルのダウンロード
+Route::get('download', 'DownloadController@index')->name('download');
+
+//資料室の請求
+Route::resource('offers', 'OffersController');
+
+//質問コーナーのルーティング
+Route::resource('asks', 'AsksController');
+
+//質問への回答のルーティング
+Route::resource('replies', 'RepliesController');

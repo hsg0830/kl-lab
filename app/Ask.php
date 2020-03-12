@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 
-class Article extends Model
+use App\User;
+use App\Reply;
+
+class Ask extends Model
 {
     protected $fillable = [
-        'category', 'post_date', 'title', 'content', 'user_id'
+      'category', 'title', 'ask_content', 'user_id',
     ];
 
     public function user()
@@ -16,8 +18,8 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function questions()
+    public function replies()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Reply::class);
     }
 }

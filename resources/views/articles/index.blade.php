@@ -7,7 +7,7 @@
         </div>
         <div>
             @if(Auth::check() && Auth::user()->is_admin == true)
-                {!! link_to_route('articles.create', 'コラムの新規投稿', [], ['class' => 'btn btn-success']) !!}
+                {!! link_to_route('articles.create', 'コラムの新規投稿(admin only)', [], ['class' => 'btn btn-info']) !!}
             @endif
         </div>
     </div>
@@ -26,7 +26,7 @@
                     <td>{{ $article->category }}</td>
                     <td>{!! link_to_route('articles.show', $article->title, ['id' => $article->id]) !!}</td>
                     <td>{{ $article->post_date }}</td>
-                    <td>{{ $article->user_id }}</td>
+                    <td>{{ $article->user->name }}</td>
                     </tr>
             @endforeach
         </table>

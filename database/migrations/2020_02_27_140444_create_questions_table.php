@@ -21,6 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->boolean('handling')->default(false);
             $table->integer('user_of_handled')->unsigned()->index();
             $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->foreign('user_of_handled')->references('id')->on('users')->onDelete('restrict');
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('restrict');

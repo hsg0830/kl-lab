@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\User;
+use App\Question;
+use App\Answer;
 
 class ArticlesController extends Controller
 {
 
     public function index()
     {
-        $articles = Article::all();
+        // $articles = Article::all();
         $articles = Article::orderBy('post_date', 'desc')->paginate(5);
 
         return view('articles.index', ['articles' => $articles]);
@@ -50,7 +53,15 @@ class ArticlesController extends Controller
 
     public function show($id)
     {
-        $article = Article::find($id);
+        //$article = Article::find($id);
+
+        //$questions = Article::find($id)->questions;
+
+        $article = Article::with(['questions' => function($query)
+        {
+            $query->orderBy('created_at', 'desc');
+
+        }])->find($id);
 
         return view('articles.show', ['article' => $article]);
     }
@@ -69,13 +80,6 @@ class ArticlesController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
@@ -91,8 +95,9 @@ class ArticlesController extends Controller
         //return back();
 
         $article = Article::find($id);
+        $questions = Article::find($id)->questions;
 
-        return view('articles.show', ['article' => $article]);
+        return view('articles.show', ['article' => $article, 'questions' => $questions]);
 
     }
 
