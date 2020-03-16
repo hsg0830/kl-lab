@@ -5,6 +5,12 @@
         <div class="text-center">
             <h1>質問コーナーのトップページ</h1>
         </div>
+        <div>
+          <h4 style="color:red">課題レビュー用の補足説明</h4>
+            <ul>
+              <li>ログイン状態でのみ、ページ下部に【質問の投稿】フォームが表示されます。</li>
+            </ul>
+        </div>
     </div>
 
     <div>
@@ -23,7 +29,7 @@
             <td>{!! link_to_route('asks.show', $ask->title, ['id' => $ask->id]) !!}</td>
             <td>{{ $ask->user->name }}</td>
             <td>{{ $ask->created_at }}</td>
-            <td>##</td>
+            <td>{{ count($ask->replies) }}</td>
           </tr>
         @endforeach
       </table>
@@ -61,6 +67,9 @@
 
             {!! Form::close() !!}
         </div>
+
+      @else
+        <p><strong>※質問を投稿したい方は{!! link_to_route('login', 'ログイン', []) !!}してください。</strong></p>
       @endif
 
 @endsection

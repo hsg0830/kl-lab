@@ -26,22 +26,22 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::resource('articles', 'ArticlesController');
 
 //コラムへの質問
-Route::resource('questions', 'QuestionsController');
+Route::resource('questions', 'QuestionsController', ['only' => ['store', 'destroy']]);
 
 //コラムへの質問への回答
-Route::resource('answers', 'AnswersController');
+Route::resource('answers', 'AnswersController', ['only' => ['store', 'destroy']]);
 
 //資料室のルーティング
-Route::resource('resources', 'ResourcesController');
+Route::resource('resources', 'ResourcesController', ['only' => ['index', 'store', 'show', 'destroy']]);
 
 //ファイルのダウンロード
 Route::get('download', 'DownloadController@index')->name('download');
 
 //資料室の請求
-Route::resource('offers', 'OffersController');
+Route::resource('offers', 'OffersController', ['only' => ['store', 'destroy']]);
 
 //質問コーナーのルーティング
-Route::resource('asks', 'AsksController');
+Route::resource('asks', 'AsksController', ['only' => ['index', 'store', 'show', 'destroy']]);
 
 //質問への回答のルーティング
-Route::resource('replies', 'RepliesController');
+Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);

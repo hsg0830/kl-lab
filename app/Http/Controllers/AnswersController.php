@@ -19,9 +19,7 @@ class AnswersController extends Controller
 
     public function create(Request $request)
     {
-        $question_id = $request->id;
-
-        return view('articles.answer', ['question_id' => $question_id]);
+        //
     }
 
     public function store(Request $request)
@@ -29,14 +27,6 @@ class AnswersController extends Controller
         $this->validate($request, [
            'content_A' => 'required|max:2000',
         ]);
-
-        /*$answer = new Answer();
-
-        $answer->question_id = $request->question_id;
-        $answer->user_id = \Auth::User()->id;
-        $answer->content = $request->content_A;
-        $answer->save();
-        */
 
         $question = Question::find($request->question_id);
 

@@ -8,6 +8,15 @@
         <div style="text-align:right">
             【{{ $article->category }}】　登録日：{{ $article->post_date }}　登録者：{{ $article->user->name }}
         </div>
+        <div>
+            <h4 style="color:red">課題レビュー用の補足説明</h4>
+            <ul>
+                <li>ログイン状態でのみ、ページ下部に【質問の投稿】フォームが表示されます。</li>
+                <li>質問への回答が投稿されていない場合に限り、質問を削除するための【質問の削除】ボタンが表示されます。既に回答済みの質問は削除できません。削除権限は投稿者自身とadminに限ります。</li>
+                <li>admin権限を持つユーザとしてログインした場合のみ、【質問への回答】フォームもしく投稿済みの回答を削除する【回答の削除】ボタンが表示されます。</li>
+                <li>admin権限を持つユーザとしてログインした場合のみ、ページ最下部に、コラムを編集するためのeditページに飛ぶ【コラムの編集】ボタンと、コラムを削除するための【コラムの削除】ボタンが表示されます。</li>
+            </ul>
+        </div>
     </div>
 
     <div class="container">
@@ -83,6 +92,8 @@
 
                 {!! Form::submit('質問の投稿(User Only)', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
+        @else
+            <p><strong>※質問を投稿したい方は{!! link_to_route('login', 'ログイン', []) !!}してください。</strong></p>
         @endif
 
         <div style="margin-top:20px">

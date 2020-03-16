@@ -10,6 +10,14 @@
     <div style="margin-top:20px">
       {!! link_to_route('asks.index', '質問コーナーのトップページ', [], ['class' => 'btn btn-info']) !!}
     </div>
+    <div>
+      <h4 style="color:red;margin-top:20px">課題レビュー用の補足説明</h4>
+        <ul>
+          <li>ログイン状態でのみ、ページ下部に【回答の投稿】フォームが表示されます。</li>
+          <li>質問への回答が登録されていない状態にある時に限り、【この質問の削除】ボタンが表示されます。削除権限は、質問者本人もしくはadminが有します。</li>
+          <li>回答者自身もしくはadminとしてログインした場合、【回答の削除】ボタンが表示されます。</li>
+        </ul>
+    </div>
   </div>
 
   <div style="margin-top:30px">
@@ -17,6 +25,14 @@
     <div style="background-color:pink">
       {{ $ask->ask_content }}
     </div>
+    <div>
+      @if(Auth::check() && count($ask->replies) == 0)
+        @if(Auth::user()->id == $ask->user->id | Auth::user()->is_admin == true)
+              {!! Form::model($ask, ['route' => ['asks.destroy', $ask->id], 'method' => 'delete' ]) !!}
+                {!! Form::submit('質問の削除(質問者 or admin)', ['class' => 'btn btn-danger']) !!}
+              {!! Form::close() !!}
+        @endif
+      @endif
   </div>
 
   <div style="margin-top:30px">
@@ -58,5 +74,10 @@
 
           {!! Form::close() !!}
         </div>
+      @else
+        <div>
+          <p><strong>※回答を投稿したい方は{!! link_to_route('login', 'ログイン', []) !!}してください。</strong></p>
+        </div>
       @endif
+
 @endsection

@@ -4,7 +4,14 @@
 
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>{{ $resource->title }}</h1>
+      <h1>資料の詳細：<span style="color:blue">{{ $resource->title }}</span></h1>
+    </div>
+    <div>
+      <h4 style="color:red">課題レビュー用の補足説明</h4>
+        <ul>
+          <li>ログイン状態でのみ、ファイルのダウンロードが可能です。ダウンロードは、タイトルのリンク、もしくは下部の【ダウンロード】ボタンをクリックすると実行されます。</li>
+          <li>登録者本人もしくはadminとしてログインした場合、下部に【ファイルの削除】ボタンが表示されます。</li>
+        </ul>
     </div>
   </div>
 
@@ -42,10 +49,27 @@
     </p>
   </div>
 
-  @if(Auth::check() && Auth::User()->is_admin == true)
-    {!! Form::model($resource, ['route' => ['resources.destroy', $resource->id], 'method' => 'delete' ]) !!}
-      {!! Form::submit('ファイルの削除(adminのみ)', ['class' => 'btn btn-sm btn-danger']) !!}
-    {!! Form::close() !!}
+  @if(Auth::check())
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          {!! link_to_route('download', 'このファイルをダウンロード', ['id' => $resource->id], ['class' => 'btn btn-sm btn-success']) !!}
+        </div>
+
+        <div class="col">
+          @if(Auth::User()->id == $resource->user->id | Auth::User()->is_admin == true)
+            {!! Form::model($resource, ['route' => ['resources.destroy', $resource->id], 'method' => 'delete' ]) !!}
+              {!! Form::submit('ファイルの削除(登録者本人 or admin)', ['class' => 'btn btn-sm btn-danger']) !!}
+            {!! Form::close() !!}
+          @endif
+        </div>
+      </div>
+    </div>
+  @else
+    <div>
+      <p><strong>※この資料をダウンロードしたい方は{!! link_to_route('login', 'ログイン', []) !!}してください。</strong></p>
+    </div>
   @endif
 
 @endsection

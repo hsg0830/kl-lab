@@ -5,6 +5,13 @@
         <div class="text-center">
             <h1>資料室のトップページ</h1>
         </div>
+        <div>
+            <h4 style="color:red">課題レビュー用の補足説明</h4>
+            <ul>
+                <li>ログイン状態でのみ、ページ下部に【資料をアップロード】するためのフォームと、【資料をリクエスト】するためのフォームが表示されます。</li>
+                <li>リクエストに関しては、投稿者自身もしくはadminとしてログインした場合のみ、【リクエストの削除】ボタンが表示されます。</li>
+            </ul>
+        </div>
     </div>
 
     <div>
@@ -16,8 +23,6 @@
           <th>登録日</th>
           <th>登録者</th>
           <th>ファイルの種類</th>
-          <th style="color:red">name_of_file(制作用)</th>
-          <th style="color:red">ファイルのpath(制作用)</th>
         </tr>
         @foreach($resources as $resource)
           <tr>
@@ -26,8 +31,6 @@
             <td>{{ $resource->created_at }}</td>
             <td>{{ $resource->user->name }}</td>
             <td>{{ $resource->type_of_file }}</td>
-            <td>{{ $resource->name_of_file }}</td>
-            <td>{{ $resource->file_path }}</td>
           </tr>
         @endforeach
       </table>

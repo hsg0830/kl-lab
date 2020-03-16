@@ -62,6 +62,10 @@ class AsksController extends Controller
 
     public function destroy($id)
     {
-        //
+        $ask = Ask::find($id);
+
+        $ask->delete();
+
+        return redirect('/asks');
     }
 }

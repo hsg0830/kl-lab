@@ -6,9 +6,14 @@
             <h1>コラムの一覧ページ</h1>
         </div>
         <div>
+            <h4 style="color:red">課題レビュー用の補足説明</h4>
+            <ul>
+                <li><p>admin権限を持つユーザとしてログインした場合のみ、コラムを投稿するcreateページに飛ぶための【コラムの新規投稿】ボタンが表示されます。</p></li>
+            </ul>
             @if(Auth::check() && Auth::user()->is_admin == true)
                 {!! link_to_route('articles.create', 'コラムの新規投稿(admin only)', [], ['class' => 'btn btn-info']) !!}
             @endif
+            </p>
         </div>
     </div>
 
