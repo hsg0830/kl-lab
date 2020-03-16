@@ -33,6 +33,8 @@
           </tr>
         @endforeach
       </table>
+
+      {{ $asks->links('pagination::bootstrap-4') }}
     </div>
 
     @if(Auth::check())

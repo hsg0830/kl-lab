@@ -11,7 +11,7 @@ class AsksController extends Controller
 {
     public function index()
     {
-        $asks = Ask::orderBy('created_at', 'desc')->paginate(10);
+        $asks = Ask::orderBy('created_at', 'desc')->paginate(5);
 
         return view('asks.index', ['asks' => $asks]);
     }

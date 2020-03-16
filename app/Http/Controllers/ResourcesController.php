@@ -15,9 +15,9 @@ class ResourcesController extends Controller
 {
     public function index()
     {
-        $resources = Resource::orderBy('created_at', 'desc')->paginate(10);
+        $resources = Resource::orderBy('created_at', 'desc')->paginate(5);
 
-        $offers = Offer::orderBy('created_at', 'desc')->paginate(10);
+        $offers = Offer::orderBy('created_at', 'desc')->get();
 
         return view('resources.index', ['resources' => $resources, 'offers' => $offers]);
     }
