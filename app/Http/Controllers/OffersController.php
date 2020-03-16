@@ -20,8 +20,12 @@ class OffersController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-           'offer_content'  => 'required|max:2000',
+        $request->validate([
+           'offer_content'  => 'required|max:400',
+        ],
+        [
+            'offer_content.required' => 'リクエストを入力してください。',
+            'offer_content.max' => 'リクエストは400字以内で入力してください。',
         ]);
 
         $request->user()->offers()->create([

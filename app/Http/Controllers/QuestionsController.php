@@ -23,7 +23,11 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'content_Q' => 'required|max:2000',
+                'content_Q' => 'required|max:2000',
+           ],
+           [
+                'content_Q.required' => '質問内容を入力してください。',
+                'content_Q.max' => '質問は2,000字以内で入力してください。',
         ]);
 
         /*$question = new Question();

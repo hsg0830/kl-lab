@@ -34,10 +34,17 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
            'post_date'  => 'required',
-           'title' => 'required|max:191',
+           'title' => 'required|max:50',
            'content' => 'required|max:10000',
+        ],
+        [
+            'post_date.required' => '日付を選択してください。',
+            'title.required' => 'タイトルを入力してください。',
+            'title.max' => 'タイトルは50文字以内で入力してください。',
+            'content.required' => '本文を入力してください。',
+            'content.max' => '本文は10,000字以内で入力してください。'
         ]);
 
         $request->user()->articles()->create([

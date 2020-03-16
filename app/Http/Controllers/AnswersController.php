@@ -25,7 +25,11 @@ class AnswersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'content_A' => 'required|max:2000',
+            'content_A' => 'required|max:2000',
+        ],
+        [
+            'content_A.required' => '回答を入力してください。',
+            'content_A.max' => '回答は2,000字以内で入力してください。',
         ]);
 
         $question = Question::find($request->question_id);

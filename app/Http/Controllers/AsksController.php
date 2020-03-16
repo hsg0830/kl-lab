@@ -23,10 +23,16 @@ class AsksController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-           'category'  => 'required',
-           'title' => 'required|max:191',
-           'ask_content' => 'required|max:10000',
+        $request->validate([
+            'category'  => 'required',
+            'title' => 'required|max:50',
+            'ask_content' => 'required|max:5000',
+        ],
+        [
+            'title.required' => 'タイトルを入力してください。',
+            'title.max' => 'タイトルは50文字以内で入力してください。',
+            'ask_content.required' => '質問内容を入力してください。',
+            'ask_content.max' => '質問内容は5,000字以内で入力してください。',
         ]);
 
         $request->user()->asks()->create([
