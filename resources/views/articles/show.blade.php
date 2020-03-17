@@ -90,7 +90,7 @@
 
                 <input type="hidden" name="article_id" value="{{$article->id}}">
 
-                {!! Form::submit('質問の投稿(User Only)', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('質問の投稿(ログイン状態でのみ)', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         @else
             <p><strong>※質問を投稿したい方は{!! link_to_route('login', 'ログイン', []) !!}してください。</strong></p>

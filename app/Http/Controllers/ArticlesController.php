@@ -29,7 +29,8 @@ class ArticlesController extends Controller
             //$date = Carbon::now();
             //$date = $date->format('yyyy-mm-dd');
 
-            return view('articles.create', ['date' => $date]);
+            //return view('articles.create', ['date' => $date]);
+            return view('articles.create');
 
         } else {
 

@@ -23,7 +23,7 @@ class RepliesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'reply_content' => 'required|max:5,000',
+           'reply_content' => 'required|max:5000',
         ],
         [
             'reply_content.required' => '回答内容を入力してください。',
