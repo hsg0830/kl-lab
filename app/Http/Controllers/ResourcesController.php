@@ -29,11 +29,10 @@ class ResourcesController extends Controller
 
     public function store(Request $request)
     {
-         $request->validate([
+            $request->validate([
                 'title' => 'required|max:50',
-                'explanation' => 'required|max:2,000',
+                'explanation' => 'required|max:2000',
                 'file' => 'required',
-
             ],
             [
                 'title.required' => 'タイトルを入力してください。',
@@ -43,12 +42,6 @@ class ResourcesController extends Controller
                 'file.required' => 'ファイルを添付してください。',
             ]);
 
-        if(count($errors) > 0)
-        {
-            return back();
-        }
-        else
-        {
             //s3用にファイルを取得
             $file = $request->file('file');
 
@@ -79,7 +72,6 @@ class ResourcesController extends Controller
 
             return back();
 
-        }
     }
 
     public function show($id)

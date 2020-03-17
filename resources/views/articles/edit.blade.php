@@ -5,6 +5,9 @@
         <div class="text-center">
             <h1>コラム『{{ $article -> title }}』の編集ページ</h1>
         </div>
+        <div style="margin-top:30px">
+            <a href="{{ URL::previous() }}" class="btn btn-primary">前のページに戻る</a>
+        </div>
     </div>
 
     <div class="row">

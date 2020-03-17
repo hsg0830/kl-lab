@@ -7,6 +7,8 @@ use App\Article;
 use App\User;
 use App\Question;
 use App\Answer;
+use App\Offer;
+use Carbon\Carbon;
 
 class ArticlesController extends Controller
 {
@@ -24,7 +26,10 @@ class ArticlesController extends Controller
     {
         if(\Auth::user()->is_admin == true) {
 
-            return view('articles.create');
+            //$date = Carbon::now();
+            //$date = $date->format('yyyy-mm-dd');
+
+            return view('articles.create', ['date' => $date]);
 
         } else {
 

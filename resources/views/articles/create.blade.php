@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     {!! Form::label('title', 'タイトル') !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
+                    {!! Form::text('title', old('title'), ['value' => $date, 'class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

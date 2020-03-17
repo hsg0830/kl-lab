@@ -16,9 +16,15 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
+                    <li class="nav-item">{!! link_to_route('articles.index', 'コラム', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('resources.index', '資料室', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('asks.index', '質問コーナー', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{{ HTML::mailto('admin@gmail.com', 'お問い合わせ', array('class' => 'nav-link')) }}</li>
                 @else
+                    <li class="nav-item">{!! link_to_route('articles.index', 'コラム', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('resources.index', '資料室', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('asks.index', '質問コーナー', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('signup.get', '会員登録', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{{ HTML::mailto('admin@gmail.com', 'お問い合わせ', array('class' => 'nav-link')) }}</li>
